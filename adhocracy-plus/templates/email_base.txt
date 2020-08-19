@@ -10,8 +10,6 @@
 {% block reason %}{% endblock %}
 
 ---
-{% blocktrans with platformname=settings.a4_candy_cms_settings.OrganisationSettings.platform_name %}{{ platformname }} is a participation platform operated by{% endblocktrans %}<br />
-Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% get_settings use_default_site=True %}
 {% if settings.a4_candy_cms_settings.ImportantPages.terms_of_use %}
