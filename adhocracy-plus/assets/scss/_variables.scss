@@ -1,15 +1,16 @@
 // subset of bootstrap variables
-$brand-primary: #2d40cc; // ultramarine
+$brand-primary: #006ab3 !default; // dark blue
 
-$brand-secondary: #90efe4 !default; // terquoise
+$brand-secondary: #d9e9f4 !default; // greeny blue
+$brand-secondary-dark: #57bab1 !default; // same as above
 
-$brand-tertiary: #008dc5 !default; // prussian blue
+$brand-tertiary: #73add5 !default; // lighter blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
-$brand-success: #a3ef90 !default;
-$brand-info: $brand-primary !default; // $brand-primary from platform.scss
-$brand-warning: #ffc107 !default;
-$brand-danger: #a72b1e !default;
+$brand-success: #d7e4ac !default;
+$brand-info: $brand-secondary !default; // $brand-primary from platform.scss
+$brand-warning: #f9d2a6 !default;
+$brand-danger: #e9aab3 !default;
 
 $primary:       $brand-primary !default;
 $secondary:     $brand-secondary !default;
@@ -44,8 +45,9 @@ $brand-primary-tint: lighten($brand-primary, 47%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
 $brand-tertiary-tint: lighten($brand-tertiary, 57%) !default;
 
-$bg-light: #f7f7f7;
-$bg-tertiary: $brand-tertiary-tint !default;
+$bg-tertiary: #d9e9f4 !default;
+$bg-secondary: #c1d9e1 !default;
+$bg-light: #fbfbfb;
 
 $demi-bold: 600;
 $headings-font-weight: $demi-bold !default;
@@ -127,4 +129,3 @@ $facebook: #3b5999 !default;
 $google: #dd4b39 !default;
 $twitter: #1da1f2 !default;
 $github: #333;
-
