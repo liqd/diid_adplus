@@ -13,7 +13,7 @@ $messages-margin-bottom: 25px;
 .alert {
     margin: 0;
     padding: (1.2 * $padding) $padding;
-    background-color: $brand-primary-tint;
+    background-color: $brand-info;
     color: $text-color;
     text-align: center;
     border-radius: 0;
@@ -21,18 +21,18 @@ $messages-margin-bottom: 25px;
 }
 
 .alert--success {
-    background-color: lighten($brand-success, 15);
+    background-color: $brand-success;
     color: $text-color;
 }
 
 .alert--error,
 .alert--danger {
-    background-color: lighten($brand-danger, 50);
+    background-color: $brand-danger;
     color: $text-color;
 }
 
 .alert--warning {
-    background-color: lighten($brand-warning, 30);
+    background-color: $brand-warning;
     color: $text-color;
 }
 
