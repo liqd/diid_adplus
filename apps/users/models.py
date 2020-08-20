@@ -161,3 +161,8 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         return OrganisationTermsOfUse.objects.filter(
             user=self, organisation=organisation, has_agreed=True
         ).exists()
+
+    def set_username_from_email(self, email):
+        if not self.username:
+            name = email[0].split("@", 1)[0]
+            self.username = name
