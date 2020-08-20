@@ -188,6 +188,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
         name="robots_file",
     ),
+    re_path(r'^saml2/', include('djangosaml2.urls')),
 ]
 
 
