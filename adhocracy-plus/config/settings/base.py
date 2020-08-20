@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "djangosaml2",
     "django_ckeditor_5",
     "widget_tweaks",
     "rest_framework",
@@ -40,6 +41,7 @@ INSTALLED_APPS = (
     "rules.apps.AutodiscoverRulesConfig",
     "easy_thumbnails",
     "parler",
+
     # Wagtail cms components
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -126,6 +128,7 @@ MIDDLEWARE = (
     "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
+    'djangosaml2.middleware.SamlSessionMiddleware',
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
@@ -270,9 +273,10 @@ ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 AUTH_USER_MODEL = "a4_candy_users.User"
 
 AUTHENTICATION_BACKENDS = (
-    "rules.permissions.ObjectPermissionBackend",
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'djangosaml2.backends.Saml2Backend',
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
