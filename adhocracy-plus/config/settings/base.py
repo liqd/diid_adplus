@@ -16,28 +16,32 @@ CONTACT_EMAIL = "contact@domain"
 # Application definition
 
 INSTALLED_APPS = (
-    "django.contrib.sites",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.sitemaps",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "django.contrib.humanize",
-    "widget_tweaks",
-    "rest_framework",
-    "rest_framework.authtoken",
-    "django_filters",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "rules.apps.AutodiscoverRulesConfig",
-    "easy_thumbnails",
-    "ckeditor",
-    "ckeditor_uploader",
-    "background_task",
-    "parler",
+
+    'django.contrib.sites',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sitemaps',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'djangosaml2',
+
+    'widget_tweaks',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'rules.apps.AutodiscoverRulesConfig',
+    'easy_thumbnails',
+    'ckeditor',
+    'ckeditor_uploader',
+    'background_task',
+    'parler',
+
     # Wagtail cms components
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -114,19 +118,21 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "csp.middleware.CSPMiddleware",
-    "django_cloudflare_push.middleware.push_middleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "apps.embed.middleware.AjaxPathMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
+    'django_cloudflare_push.middleware.push_middleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'djangosaml2.middleware.SamlSessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+
+    'apps.embed.middleware.AjaxPathMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = "adhocracy-plus.config.urls"
@@ -268,9 +274,10 @@ ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 AUTH_USER_MODEL = "a4_candy_users.User"
 
 AUTHENTICATION_BACKENDS = (
-    "rules.permissions.ObjectPermissionBackend",
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'djangosaml2.backends.Saml2Backend',
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
