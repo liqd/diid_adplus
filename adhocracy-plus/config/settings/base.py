@@ -129,7 +129,11 @@ MIDDLEWARE = (
     "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
+<<<<<<< HEAD
     "djangosaml2.middleware.SamlSessionMiddleware",
+=======
+    'djangosaml2.middleware.SamlSessionMiddleware',
+>>>>>>> 16f96ec4 (config: Enable saml2 and add some configs)
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
@@ -275,10 +279,17 @@ ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 AUTH_USER_MODEL = "a4_candy_users.User"
 
 AUTHENTICATION_BACKENDS = (
+<<<<<<< HEAD
     "rules.permissions.ObjectPermissionBackend",
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
     "djangosaml2.backends.Saml2Backend",
+=======
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'djangosaml2.backends.Saml2Backend',
+>>>>>>> 16f96ec4 (config: Enable saml2 and add some configs)
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
