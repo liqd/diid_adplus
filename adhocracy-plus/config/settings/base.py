@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "apps.djangosaml2_overwrites",
     "djangosaml2",
     "django_ckeditor_5",
     "widget_tweaks",
