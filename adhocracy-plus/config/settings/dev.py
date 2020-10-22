@@ -106,4 +106,3 @@ try:
     CKEDITOR_CONFIGS["video-editor"]["embed_provider"] = CKEDITOR_URL
 except NameError:
     pass
-
