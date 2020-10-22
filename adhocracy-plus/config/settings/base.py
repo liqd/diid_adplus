@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     "django_ckeditor_5",
+    'apps.djangosaml2_overwrites',
     'djangosaml2',
     'widget_tweaks',
     'rest_framework',
