@@ -2,6 +2,7 @@ VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = adhocracy-plus apps tests
 ARGUMENTS=$(filter-out $(firstword $(MAKECMDGOALS)), $(MAKECMDGOALS))
+PORT = 8004
 
 # for mac os gsed is needed (brew install gnu-sed and brew install gsed)
 SED = sed
@@ -76,13 +77,13 @@ fixtures:
 
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(PORT)
 
 .PHONY: watch
 watch:
 	trap 'kill %1' KILL; \
 	npm run watch & \
-	$(VIRTUAL_ENV)/bin/python manage.py runserver 8004
+	$(VIRTUAL_ENV)/bin/python manage.py runserver $(PORT)
 
 .PHONY: background
 background:
@@ -232,3 +233,21 @@ celery-worker-status:
 .PHONY: celery-worker-dummy-task
 celery-worker-dummy-task:
 	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
+
+.PHONY: saml-install
+CERTS_DIR := ${CURDIR}/adhocracy-plus/config/settings/saml
+saml-install:
+	docker pull kristophjunge/test-saml-idp
+	openssl req -nodes -new -x509  -keyout ${CERTS_DIR}/private.key -out ${CERTS_DIR}/cert.pem -subj \
+	"/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
+
+.PHONY: saml-server
+saml-server:
+	cp ${PWD}/scripts/saml2_authsources.php /tmp/saml2_authsources.php
+	chmod 755 /tmp/saml2_authsources.php
+	test ! -z "${LIQD_NO_SSO_LOGIN}" || docker run -p 8080:8080 -p 8443:8443 \
+	-e SIMPLESAMLPHP_SP_ENTITY_ID=http://app.example.com \
+	-e SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost:$(PORT)/saml2/acs/ \
+	-e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost:$(PORT)/saml2/ls/ \
+	-v /tmp/saml2_authsources.php:/var/www/simplesamlphp/config/authsources.php \
+	kristophjunge/test-saml-idp
