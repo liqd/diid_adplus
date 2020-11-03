@@ -60,16 +60,17 @@ def test_register(client, signup_url):
     assert EmailAddress.objects.count() == 0
     email = "testuser@liqd.net"
     response = client.post(
-        signup_url,
-        {
-            "username": "testuser2",
-            "email": email,
-            "password1": "password",
-            "password2": "password",
-            "terms_of_use": "on",
-            "captcha": "testpass:0",
-            "get_newsletters": "on",
-        },
+        signup_url, {
+            'username': 'testuser2',
+            'email': email,
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 'testpass:0',
+            'get_newsletters': 'on',
+            'data_protection': 'on',
+            'get_notifications': 'on',
+        }
     )
     assert response.status_code == 302
     assert EmailAddress.objects.filter(email=email, verified=False).count() == 1
@@ -92,16 +93,17 @@ def test_register_with_next(client, signup_url):
     assert EmailAddress.objects.count() == 0
     email = "testuser2@liqd.net"
     response = client.post(
-        signup_url,
-        {
-            "username": "testuser2",
-            "email": email,
-            "password1": "password",
-            "password2": "password",
-            "terms_of_use": "on",
-            "captcha": "testpass:0",
-            "next": "/en/projects/pppp/",
-        },
+        signup_url, {
+            'username': 'testuser2',
+            'email': email,
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 'testpass:0',
+            'data_protection': 'on',
+            'get_notifications': 'on',
+            'next': '/en/projects/pppp/',
+        }
     )
     assert response.status_code == 302
     assert EmailAddress.objects.filter(email=email, verified=False).count() == 1
@@ -122,12 +124,14 @@ def test_register_with_next(client, signup_url):
 def test_reregister_same_username(client, signup_url):
     assert EmailAddress.objects.count() == 0
     data = {
-        "username": "testuser2",
-        "email": "testuser@liqd.net",
-        "password1": "password",
-        "password2": "password",
-        "terms_of_use": "on",
-        "captcha": "testpass:0",
+        'username': 'testuser2',
+        'email': 'testuser@liqd.net',
+        'password1': 'password',
+        'password2': 'password',
+        'terms_of_use': 'on',
+        'captcha': 'testpass:0',
+        'data_protection': 'on',
+        'get_notifications': 'on',
     }
     response = client.post(signup_url, data)
     assert response.status_code == 302
@@ -142,15 +146,16 @@ def test_reregister_same_username(client, signup_url):
 def test_register_invalid_no_matching_passwords(client, signup_url):
     username = "testuser2"
     response = client.post(
-        signup_url + "?next=/",
-        {
-            "username": username,
-            "email": "testuser@liqd.net",
-            "password1": "password",
-            "password2": "wrong_password",
-            "terms_of_use": "on",
-            "captcha": "testpass:0",
-        },
+        signup_url + '?next=/', {
+            'username': username,
+            'email': 'testuser@liqd.net',
+            'password1': 'password',
+            'password2': 'wrong_password',
+            'terms_of_use': 'on',
+            'captcha': 'testpass:0',
+            'data_protection': 'on',
+            'get_notifications': 'on',
+        }
     )
     assert response.status_code == 200
     assert models.User.objects.filter(username=username).count() == 0
@@ -160,15 +165,16 @@ def test_register_invalid_no_matching_passwords(client, signup_url):
 def test_register_invalid_no_captcha(client, signup_url):
     username = "testuser2"
     response = client.post(
-        signup_url + "?next=/",
-        {
-            "username": username,
-            "email": "testuser@liqd.net",
-            "password1": "password",
-            "password2": "password",
-            "terms_of_use": "on",
-            "captcha": 0,
-        },
+        signup_url + '?next=/', {
+            'username': username,
+            'email': 'testuser@liqd.net',
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 0,
+            'data_protection': 'on',
+            'get_notifications': 'on',
+        }
     )
     assert response.status_code == 200
     assert models.User.objects.filter(username=username).count() == 0
@@ -178,15 +184,16 @@ def test_register_invalid_no_captcha(client, signup_url):
 def test_register_invalid_wrong_captcha(client, signup_url):
     username = "testuser2"
     response = client.post(
-        signup_url + "?next=/",
-        {
-            "username": username,
-            "email": "testuser@liqd.net",
-            "password1": "password",
-            "password2": "password",
-            "terms_of_use": "on",
-            "captcha": "testfail",
-        },
+        signup_url + '?next=/', {
+            'username': username,
+            'email': 'testuser@liqd.net',
+            'password1': 'password',
+            'password2': 'password',
+            'terms_of_use': 'on',
+            'captcha': 'testfail',
+            'data_protection': 'on',
+            'get_notifications': 'on',
+        }
     )
     assert response.status_code == 200
     assert models.User.objects.filter(username=username).count() == 0
