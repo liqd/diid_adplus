@@ -129,9 +129,11 @@ MIDDLEWARE = (
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     'djangosaml2.middleware.SamlSessionMiddleware',
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
 )
 
 ROOT_URLCONF = "adhocracy-plus.config.urls"
