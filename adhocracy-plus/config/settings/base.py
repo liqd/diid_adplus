@@ -134,6 +134,7 @@ MIDDLEWARE = (
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
 )
 
 ROOT_URLCONF = "adhocracy-plus.config.urls"
