@@ -2,8 +2,8 @@
 
 [adhocracy.plus](https://adhocracy.plus/) is a free Open-Source participation platform maintained and primarily developed by Liquid Democracy e.V.. It is based on [adhocracy 4](https://github.com/liqd/adhocracy4) and [Django](https://github.com/django/django).
 
-![Build Status](https://github.com/liqd/adhocracy-plus/actions/workflows/django.yml/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/liqd/adhocracy-plus/badge.svg?branch=main)](https://coveralls.io/github/liqd/adhocracy-plus?branch=main)
+![Build Status](https://github.com/liqd/diid-adplus/actions/workflows/django.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/liqd/diid-adplus/badge.svg?branch=main)](https://coveralls.io/github/liqd/diid-adplus?branch=main)
 
 ## Getting started
 
@@ -24,27 +24,13 @@ adhocracy+ is designed to make online participation easy and accessible to every
     make install
     make fixtures
 
-### Start virtual environment:
-    source venv/bin/activate
-
 ### Check if tests work:
 
     make test
 
 ### Start a local server:
-    make watch
 
-### Use postgresql database for testing:
-run the following command once:
-```
-make create-postgres
-```
-to start the testserver with postgresql, run:
-```
-export DATABASE=postgresql
-make start-postgres
-make watch
-```
+    make watch
 
 Go to http://localhost:8004/ and login with admin@liqd.net | password
 
