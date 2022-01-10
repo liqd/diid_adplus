@@ -1,4 +1,5 @@
 import factory
+from allauth.account.models import EmailAddress
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 
@@ -16,6 +17,15 @@ class UserFactory(factory.django.DjangoModelFactory):
     password = make_password('password')
     language = 'en'
 
+    @factory.post_generation
+    def email_address(self, create, extracted, **kwargs):
+        EmailAddress.objects.create(
+            user=self,
+            email=self.email,
+            primary=True,
+            verified=True,
+        )
+
 
 class AdminFactory(factory.django.DjangoModelFactory):
 
@@ -27,6 +37,15 @@ class AdminFactory(factory.django.DjangoModelFactory):
     password = make_password('password')
     is_superuser = True
     language = 'en'
+
+    @factory.post_generation
+    def email_address(self, create, extracted, **kwargs):
+        EmailAddress.objects.create(
+            user=self,
+            email=self.email,
+            primary=True,
+            verified=True,
+        )
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):
