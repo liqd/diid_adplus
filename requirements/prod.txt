@@ -1,3 +1,4 @@
 -r base.txt
+-r fork.txt
 gunicorn==20.1.0
 psycopg2==2.9.3
