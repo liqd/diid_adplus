@@ -2,3 +2,13 @@
 # see https://pyup.io/docs/configuration/ for all available options
 
 schedule: "every week on monday"
+
+requirements:
+  - requirements/fork.txt:
+      update: all
+  - requirements/base.txt:
+      update: False
+  - requirements/dev.txt:
+      update: False
+  - requirements/prod.txt:
+      update: False
