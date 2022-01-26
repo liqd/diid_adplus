@@ -1,0 +1,2 @@
+# requirements needed in this fork, but not a+
+djangosaml2==0.40.0
