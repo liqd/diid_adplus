@@ -25,3 +25,4 @@ class EmailAddressFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = EmailAddress
+        django_get_or_create = ('user', 'email')
