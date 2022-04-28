@@ -4,11 +4,12 @@ import pytest
 from allauth.account.models import EmailAddress
 from django.contrib import auth
 from django.core import mail
+from django.test import modify_settings
 from django.test import override_settings
 from django.urls import reverse
 from django.utils import translation
 
-# from adhocracy4.test.helpers import redirect_target
+from adhocracy4.test.helpers import redirect_target
 from apps.users import models
 
 User = auth.get_user_model()
@@ -63,6 +64,9 @@ def test_logout_with_next(user, client, logout_url):
     assert "_auth_user_id" not in client.session
 
 
+@modify_settings(MIDDLEWARE={
+    'remove': 'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
+})
 @pytest.mark.django_db
 def test_register(client, signup_url):
     assert EmailAddress.objects.count() == 0
@@ -83,24 +87,27 @@ def test_register(client, signup_url):
     assert response.status_code == 302
     assert EmailAddress.objects.filter(email=email, verified=False).count() == 1
     assert len(mail.outbox) == 1
-    # confirmation_url = re.search(
-    #     r'(http://testserver/.*/)',
-    #     str(mail.outbox[0].body)
-    # ).group(0)
+    confirmation_url = re.search(
+        r'(http://testserver/.*/)',
+        str(mail.outbox[0].body)
+    ).group(0)
 
-    # confirm_email_response = client.get(confirmation_url)
-    # assert confirm_email_response.status_code == 200
-    # assert EmailAddress.objects.filter(
-    #     email=email, verified=False
-    # ).count() == 1
-    # confirm_email_response = client.post(confirmation_url)
-    # assert confirm_email_response.status_code == 302
-    # assert EmailAddress.objects.filter(
-    #     email=email, verified=True
-    # ).count() == 1
-    # assert User.objects.get(email=email).get_newsletters is True
+    confirm_email_response = client.get(confirmation_url)
+    assert confirm_email_response.status_code == 200
+    assert EmailAddress.objects.filter(
+        email=email, verified=False
+    ).count() == 1
+    confirm_email_response = client.post(confirmation_url)
+    assert confirm_email_response.status_code == 302
+    assert EmailAddress.objects.filter(
+        email=email, verified=True
+    ).count() == 1
+    assert User.objects.get(email=email).get_newsletters is True
 
 
+@modify_settings(MIDDLEWARE={
+    'remove': 'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
+})
 @pytest.mark.django_db
 def test_register_with_next(client, signup_url):
     assert EmailAddress.objects.count() == 0
@@ -121,21 +128,21 @@ def test_register_with_next(client, signup_url):
     assert response.status_code == 302
     assert EmailAddress.objects.filter(email=email, verified=False).count() == 1
     assert len(mail.outbox) == 1
-    # confirmation_url = re.search(
-    #     r'(http://testserver/.*/?next=/en/projects/pppp/)',
-    #     str(mail.outbox[0].body)
-    # ).group(0)
-    # confirm_email_response = client.get(confirmation_url)
-    # assert confirm_email_response.status_code == 200
-    # assert EmailAddress.objects.filter(
-    #     email=email, verified=False
-    # ).count() == 1
-    # confirm_email_response = client.post(confirmation_url)
-    # assert confirm_email_response.status_code == 302
-    # assert redirect_target(confirm_email_response) == "project-detail"
-    # assert EmailAddress.objects.filter(
-    #     email=email, verified=True
-    # ).count() == 1
+    confirmation_url = re.search(
+        r'(http://testserver/.*/?next=/en/projects/pppp/)',
+        str(mail.outbox[0].body)
+    ).group(0)
+    confirm_email_response = client.get(confirmation_url)
+    assert confirm_email_response.status_code == 200
+    assert EmailAddress.objects.filter(
+        email=email, verified=False
+    ).count() == 1
+    confirm_email_response = client.post(confirmation_url)
+    assert confirm_email_response.status_code == 302
+    assert redirect_target(confirm_email_response) == "project-detail"
+    assert EmailAddress.objects.filter(
+        email=email, verified=True
+    ).count() == 1
 
 
 @pytest.mark.django_db
