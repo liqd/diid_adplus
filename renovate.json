@@ -3,15 +3,6 @@
     "config:base"
   ],
 
-  "dependencies": {
-    "updateTypes": ["minor", "patch"],
-    "automerge": true
-  },
-  "devDependencies": {
-    "updateTypes": ["minor", "patch"],
-    "automerge": true
-  },
-
   "digest": {
     "enabled": false
   },
@@ -36,6 +27,10 @@
       {
         "matchPackageNames": ["wagtail"],
         "allowedVersions": "=4.1"
+      },
+      {
+        "matchManagers": ["npm"],
+        "enabled": false
       }
     ],
 
