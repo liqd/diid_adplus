@@ -8,7 +8,7 @@ $brand-tertiary: #73add5 !default; // lighter blue
 
 /* Don't use variables but hex-values here as they should not be overwritten on organisation pages */
 $brand-success: #d7e4ac !default;
-$brand-info: $brand-secondary !default; // $brand-primary from platform.scss
+$brand-info: $brand-primary !default; // $brand-primary from platform.scss
 $brand-warning: #f9d2a6 !default;
 $brand-danger: #e9aab3 !default;
 
@@ -43,7 +43,7 @@ $print-link: #005cb4 !default;
 
 $brand-primary-tint: lighten($brand-primary, 47%) !default;
 $brand-secondary-tint: lighten($brand-secondary, 20%) !default;
-$brand-tertiary-tint: lighten($brand-tertiary, 55%) !default;
+$brand-tertiary-tint: lighten($brand-tertiary, 30%) !default;
 
 $bg-tertiary: #d9e9f4 !default;
 $bg-secondary: #c1d9e1 !default;
