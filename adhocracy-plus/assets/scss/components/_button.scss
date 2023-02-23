@@ -63,7 +63,7 @@
 }
 
 .btn.btn--light {
-    @include button($brand-tertiary, $text-color, $text-color, 57%);
+    @include button($brand-tertiary, $text-color, $text-color, 30%);
 }
 
 .btn.btn--primary {
@@ -75,7 +75,7 @@
 }
 
 .btn.btn--secondary-filled {
-    @include button-bg($brand-secondary, $brand-secondary, $print-black, 10%);
+    @include button-bg($brand-secondary, $brand-secondary, $print-black, 3%);
 }
 
 .btn.btn--bg-tertiary {
