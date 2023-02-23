@@ -84,7 +84,7 @@ $checkbox-size: 20px;
 }
 
 .poll-row__bar {
-    background-color: $brand-primary-tint;
+    background-color: $brand-tertiary-tint;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -102,7 +102,7 @@ $checkbox-size: 20px;
 }
 
 .poll__highlight {
-    background-color: $brand-tertiary-tint;
+    background-color: $brand-primary-tint;
 }
 
 .poll__btn--wrapper {
