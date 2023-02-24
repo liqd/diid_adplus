@@ -325,7 +325,9 @@ class DashboardCommunicationContentCreateView(
         if data["add_aplus_logo"]:
             # get aplus logo
             logo_aplus_get = Image.open(
-                os.path.join(settings.BASE_DIR, "adhocracy-plus/assets/images/logo.png")
+                os.path.join(
+                    settings.BASE_DIR, "adhocracy-plus/assets/images/logo_sharepic.png"
+                )
             )
             logo_aplus_size = (
                 sharepic_format["aplus_logo_width"],
