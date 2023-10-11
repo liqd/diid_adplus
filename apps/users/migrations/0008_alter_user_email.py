@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("a4_candy_users", "0006_change_error_wording_email_address"),
+        ("a4_candy_users", "0007_alter_user_get_notifications"),
     ]
 
     operations = [
