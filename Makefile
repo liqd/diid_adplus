@@ -53,6 +53,8 @@ help:
 	@echo "  make celery-worker-start		-- starts the celery worker in the foreground"
 	@echo "  make celery-worker-status		-- lists all registered tasks and active worker nodes"
 	@echo "  make celery-worker-dummy-task	-- calls the dummy task and prints result from redis"
+	@echo "  make saml-install          	-- script to install local version of single sign-in in docker container"
+	@echo "  make saml-server          		-- script to run local version of single sign-in in docker container"
 	@echo
 
 .PHONY: install
