@@ -45,6 +45,8 @@ help:
 	@echo "  make stop-postgres   				-- stops the local postgres cluster"
 	@echo "  make create-postgres   			-- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo "  make local-a4          			-- patch to use local a4 (needs to have path ../adhocracy4)"
+	@echo "  make saml-install          	-- script to install local version of single sign-in in docker container"
+	@echo "  make saml-server          		-- script to run local version of single sign-in in docker container"
 	@echo
 
 .PHONY: install
