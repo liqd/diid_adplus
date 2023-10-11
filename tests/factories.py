@@ -14,6 +14,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: "user%d@liqd.net" % n)
     password = make_password("password")
     language = "en"
+    get_notifications = True
 
     @factory.post_generation
     def email_address(self, create, extracted, **kwargs):
