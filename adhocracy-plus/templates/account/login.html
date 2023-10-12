@@ -8,6 +8,8 @@
 
     {% include "account/diid/saml2.html" with process="login" %}
 
+    {% if usersignup %}
+
     <h4>{% trans "You don't have a HHU account?" context "diid" %}</h4>
 
     <p>{% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktranslate %}</p>
@@ -37,4 +39,5 @@
     </form>
 
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% endif %}
 {% endblock %}
