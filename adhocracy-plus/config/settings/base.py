@@ -129,7 +129,7 @@ MIDDLEWARE = (
     "apps.users.middleware.SetUserLanguageCookieMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
-    'djangosaml2.middleware.SamlSessionMiddleware',
+    "djangosaml2.middleware.SamlSessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
@@ -142,9 +142,8 @@ ROOT_URLCONF = "adhocracy-plus.config.urls"
 LOCALE_PATHS = [
     # use the first line in branches and forks to keep the original translations
     # from main branch and overwrite or add extra translations in fork
-
-    os.path.join(BASE_DIR, 'locale-fork/locale'),
-    os.path.join(BASE_DIR, 'locale-source/locale')
+    os.path.join(BASE_DIR, "locale-fork/locale"),
+    os.path.join(BASE_DIR, "locale-source/locale"),
 ]
 
 TEMPLATES = [
@@ -276,10 +275,10 @@ ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 AUTH_USER_MODEL = "a4_candy_users.User"
 
 AUTHENTICATION_BACKENDS = (
-    'rules.permissions.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-    'djangosaml2.backends.Saml2Backend',
+    "rules.permissions.ObjectPermissionBackend",
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+    "djangosaml2.backends.Saml2Backend",
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
@@ -691,3 +690,4 @@ CKEDITOR_5_CONFIGS = {
         },
     },
 }
+USER_REGISTRATION = False
