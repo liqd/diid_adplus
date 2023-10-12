@@ -132,9 +132,8 @@ MIDDLEWARE = (
     "djangosaml2.middleware.SamlSessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware",
 )
 

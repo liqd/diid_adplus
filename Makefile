@@ -235,10 +235,7 @@ celery-worker-status:
 .PHONY: celery-worker-dummy-task
 celery-worker-dummy-task:
 	$(VIRTUAL_ENV)/bin/celery --app adhocracy-plus call dummy_task | awk '{print "celery-task-meta-"$$0}' | xargs redis-cli get | python3 -m json.tool
-<<<<<<< HEAD
 
-=======
->>>>>>> 4f0d1ce5 (saml2: Add test-server config)
 .PHONY: saml-install
 CERTS_DIR := ${CURDIR}/adhocracy-plus/config/settings/saml
 saml-install:
@@ -256,7 +253,3 @@ saml-server:
 	-e SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost:$(PORT)/saml2/ls/ \
 	-v /tmp/saml2_authsources.php:/var/www/simplesamlphp/config/authsources.php \
 	kristophjunge/test-saml-idp
-<<<<<<< HEAD
-=======
->>>>>>> ffb15c24 (saml2: Add test-server config)
->>>>>>> 4f0d1ce5 (saml2: Add test-server config)

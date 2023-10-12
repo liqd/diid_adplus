@@ -1,6 +1,5 @@
 from allauth.account.models import EmailAddress
 from django import forms
-<<<<<<< HEAD
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import pgettext_lazy
 
@@ -8,7 +7,6 @@ from apps.users.models import User
 
 
 class Djangosaml2SignupForm(forms.ModelForm):
-<<<<<<< HEAD
     terms_of_use = forms.BooleanField(label=_("Terms of use"))
     data_protection = forms.BooleanField(label=_("Data protection"))
     get_notifications = forms.BooleanField(
@@ -32,7 +30,6 @@ class Djangosaml2SignupForm(forms.ModelForm):
 
     class Meta:
         model = User
-<<<<<<< HEAD
         fields = ["username", "get_notifications", "get_newsletters"]
 
     def clean_username(self):
