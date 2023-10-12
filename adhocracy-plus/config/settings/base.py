@@ -16,33 +16,30 @@ CONTACT_EMAIL = "contact@domain"
 # Application definition
 
 INSTALLED_APPS = (
-
-    'django.contrib.sites',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sitemaps',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    'apps.djangosaml2_overwrites',
-    'djangosaml2',
-
-    'widget_tweaks',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'django_filters',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'rules.apps.AutodiscoverRulesConfig',
-    'easy_thumbnails',
-    'ckeditor',
-    'ckeditor_uploader',
-    'background_task',
-    'parler',
-
+    "django.contrib.sites",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sitemaps",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    "apps.djangosaml2_overwrites",
+    "djangosaml2",
+    "widget_tweaks",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "django_filters",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "rules.apps.AutodiscoverRulesConfig",
+    "easy_thumbnails",
+    "ckeditor",
+    "ckeditor_uploader",
+    "background_task",
+    "parler",
     # Wagtail cms components
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -128,12 +125,11 @@ MIDDLEWARE = (
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
-    'djangosaml2.middleware.SamlSessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    'apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware',
+    "djangosaml2.middleware.SamlSessionMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "apps.djangosaml2_overwrites.middlewares.SamlSignupMiddleware",
 )
 
 ROOT_URLCONF = "adhocracy-plus.config.urls"
@@ -141,9 +137,8 @@ ROOT_URLCONF = "adhocracy-plus.config.urls"
 LOCALE_PATHS = [
     # use the first line in branches and forks to keep the original translations
     # from main branch and overwrite or add extra translations in fork
-
-    os.path.join(BASE_DIR, 'locale-fork/locale'),
-    os.path.join(BASE_DIR, 'locale-source/locale')
+    os.path.join(BASE_DIR, "locale-fork/locale"),
+    os.path.join(BASE_DIR, "locale-source/locale"),
 ]
 
 TEMPLATES = [
@@ -276,10 +271,10 @@ ALLOWED_UPLOAD_IMAGES = ("png", "jpeg", "gif")
 AUTH_USER_MODEL = "a4_candy_users.User"
 
 AUTHENTICATION_BACKENDS = (
-    'rules.permissions.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-    'djangosaml2.backends.Saml2Backend',
+    "rules.permissions.ObjectPermissionBackend",
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+    "djangosaml2.backends.Saml2Backend",
 )
 
 ACCOUNT_ADAPTER = "apps.users.adapters.AccountAdapter"
@@ -571,3 +566,5 @@ CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_EXTENDED = True
+
+USER_REGISTRATION = False
