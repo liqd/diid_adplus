@@ -13,21 +13,21 @@ class SamlSignupMiddleware:
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         if request.user.is_authenticated:
-            email = EmailAddress.objects.get(user=request.user,
-                                             email=request.user.email)
+            email = EmailAddress.objects.get(
+                user=request.user, email=request.user.email
+            )
             if not email.verified:
                 path = request.path
                 view = request.resolver_match.view_name
 
                 allowed_paths = [
-                    reverse('saml2_signup'),
-                    reverse('saml2_logout'),
-                    reverse('set_language'),
-                    reverse('javascript-catalog')
+                    reverse("account_logout"),
+                    reverse("saml2_signup"),
+                    reverse("saml2_logout"),
+                    reverse("set_language"),
+                    reverse("javascript-catalog"),
                 ]
-                allowed_views = [
-                    'wagtail_serve'
-                ]
+                allowed_views = ["wagtail_serve"]
 
                 if path not in allowed_paths and view not in allowed_views:
-                    return redirect(reverse('saml2_signup') + "?next=" + path)
+                    return redirect(reverse("saml2_signup") + "?next=" + path)
