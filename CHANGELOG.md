@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 Since version v2306 the format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 This project (not yet) adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2406.1
+
+### Changed
+
+- rebased on aplus v2406.2
+- update djangosaml2 to v 1.9.3
+
+### Fixed
+
+- add account logout view to allowed urls during saml signup. Fixes aborting
+  the saml signup not being possible (#6).
+
 ## v2312.1
 
 ### Changed
